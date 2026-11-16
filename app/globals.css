@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #062a33;
+  --color-deep: #063d4c;
+  --color-cta: #0d7288;
+  --color-cta2: #0a5b6d;
+  --color-gold: #e8c88a;
+  --color-brass: #7a5a22;
+  --color-tint: #d9ebea;
+  --color-paper: #f7f3ea;
+  --color-line: #e4ddcd;
+  --color-mut: #45606a;
+  --color-wa: #1fb355;
+
+  --font-sans: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-display: "Alexandria Variable", "IBM Plex Sans Arabic", sans-serif;
+  --font-latin: "Cormorant Garamond", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(31 179 85 / 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgb(31 179 85 / 0);
+  }
+}
+.wa-pulse {
+  animation: pulse-ring 2s infinite;
+}
+@keyframes pulse-ring-deep {
+  0% {
+    box-shadow: 0 0 0 0 rgb(13 114 136 / 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgb(13 114 136 / 0);
+  }
+}
+.call-pulse {
+  animation: pulse-ring-deep 2s infinite 1s;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop {
+  animation: pop 0.28s ease-out;
+}
+
+/* شريط التابات على الموبايل يتسحب أفقيًا بدون سكرول بار */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cta);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .wa-pulse,
+  .call-pulse,
+  .pop {
+    animation: none;
+  }
+}
